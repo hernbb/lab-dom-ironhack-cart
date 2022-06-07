@@ -41,7 +41,10 @@ function calculateAll() {
 
 function removeProduct(event) {
   console.log(event);
-  const removeFather = console.log('The target in remove is:', target);
+  const removeFather = event.currentTarget.parentNode.parentNode;
+  removeFather.parentNode.removeChild(removeFather); //aqui podria hacer un remove si pongo otro parent node arriba y elimino el de abajo.
+
+  //console.log('The target in remove is:', target);
   //... your code goes here
 }
 
@@ -57,7 +60,9 @@ window.addEventListener('load', () => {
 
   //... your code goes here
   window.addEventListener('click', () => {
-    const removeItemButton = document.querySelector('.btn-remove');
-    removeItemButton.addEventListener('click', removeProduct);
+    const removeItemButton = document.querySelectorAll('.btn-remove');
+    removeItemButton.forEach((e) => {
+      e.addEventListener('click', removeProduct);
+    });
   });
 });
